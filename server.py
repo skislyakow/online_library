@@ -14,6 +14,11 @@ def on_reload():
 
     for book in books:
         book["book_url"] = quote("books/" + book["book_path"])
+        book["genres"] = [
+            g.strip().rstrip(".")
+            for g in book.get("genres", "").split(",")
+            if g.strip()
+        ]
 
     pages = list(chunked(books, BOOKS_PER_PAGE))
 
