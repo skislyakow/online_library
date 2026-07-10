@@ -1,3 +1,4 @@
+import argparse
 import json
 from pathlib import Path
 from urllib.parse import quote
@@ -9,12 +10,34 @@ from livereload import Server
 BOOKS_PER_PAGE = 20
 
 
-def on_reload():
-    with open("media/meta_data.json", encoding="utf-8") as file:
+def parse_args():
+    parser = argparse.ArgumentParser(description="Онлайн библиотека")
+    parser.add_argument(
+        "--data",
+        default="media/meta_data.json",
+        help="Путь к метаданным книг (по умолчанию: media/meta_data.json)",
+    )
+    parser.add_argument(
+        "--host",
+        default="127.0.0.1",
+        help="Адрес сервера (по умолчанию: 127.0.0.1)",
+    )
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=5500,
+        help="Порт сервера (по умолчанию: 5500)",
+    )
+    return parser.parse_args()
+
+
+def on_reload(data_path):
+    media_root = str(Path(data_path).parent)
+    with open(data_path, encoding="utf-8") as file:
         books = json.load(file)
 
     for book in books:
-        book["book_url"] = quote("media/" + book["book_path"])
+        book["book_url"] = quote(media_root + "/" + book["book_path"])
         book["genres"] = [
             g.strip().rstrip(".")
             for g in book.get("genres", "").split(",")
@@ -60,6 +83,7 @@ def on_reload():
     print(f"Сгенерировано {total_pages} страниц, {len(books)} книг")
 
 
+args = parse_args()
 server = Server()
-server.watch("templates/index.html", on_reload)
-server.serve(root=".", host="127.0.0.1", port=5500)
+server.watch("templates/index.html", lambda: on_reload(args.data))
+server.serve(root=".", host=args.host, port=args.port)

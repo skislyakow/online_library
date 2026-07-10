@@ -34,6 +34,7 @@
 - 📱 **Адаптивная вёрстка** — 2 колонки на десктопе, 1 на мобильных
 - 🔌 **Автоперезагрузка** при разработке через livereload
 - 📡 **Работает офлайн** — Bootstrap и фавикон загружаются локально
+- ⚙️ **Гибкая настройка** — путь к данным, хост и порт через argparse
 
 ## 🛠️ Технологии
 
@@ -44,6 +45,7 @@
 | [Bootstrap 5.3](https://getbootstrap.com/) | Стили и сетка |
 | [livereload](https://github.com/lepture/python-livereload) | Автоперезагрузка в браузере |
 | [more-itertools](https://more-itertools.readthedocs.io/) | Разбивка списков на chunks |
+| [argparse](https://docs.python.org/3/library/argparse.html) | Аргументы командной строки |
 | [GitHub Pages](https://pages.github.com/) | Хостинг статики |
 
 ## 🚀 Быстрый старт
@@ -63,12 +65,30 @@ source .venv/bin/activate    # Linux/macOS
 # Установить зависимости
 pip install -r requirements.txt
 
-# Запустить сервер с автоперезагрузкой
+# Запустить сервер (автоматически сгенерирует страницы)
 python server.py
 ```
 
 Открыть в браузере: [http://127.0.0.1:5500](http://127.0.0.1:5500)
 
+### Настройка
+
+```bash
+# Свой файл с данными
+python server.py --data /path/to/meta_data.json
+
+# Другой порт
+python server.py --port 8080
+
+# Все опции
+python server.py --data /path/to/meta_data.json --host 0.0.0.0 --port 8080
+```
+
+| Опция | По умолчанию | Описание |
+|---|---|---|
+| `--data` | `media/meta_data.json` | Путь к метаданным книг |
+| `--host` | `127.0.0.1` | Адрес сервера |
+| `--port` | `5500` | Порт сервера |
 
 ## 📁 Структура проекта
 
