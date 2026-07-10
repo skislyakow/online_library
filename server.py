@@ -8,6 +8,7 @@ from livereload import Server
 
 
 BOOKS_PER_PAGE = 20
+BOOKS_PER_ROW = 2
 
 
 def parse_args():
@@ -53,7 +54,7 @@ def on_reload(data_path):
 
     total_pages = len(pages)
     for page_num, page_books in enumerate(pages, 1):
-        book_pairs = list(chunked(page_books, 2))
+        book_pairs = list(chunked(page_books, BOOKS_PER_ROW))
         html = template.render(
             books=book_pairs,
             current_page=page_num,
