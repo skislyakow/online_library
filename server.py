@@ -9,11 +9,11 @@ BOOKS_PER_PAGE = 20
 
 
 def on_reload():
-    with open("books/meta_data.json", encoding="utf-8") as file:
+    with open("media/meta_data.json", encoding="utf-8") as file:
         books = json.load(file)
 
     for book in books:
-        book["book_url"] = quote("books/" + book["book_path"])
+        book["book_url"] = quote("media/" + book["book_path"])
         book["genres"] = [
             g.strip().rstrip(".")
             for g in book.get("genres", "").split(",")

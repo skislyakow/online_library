@@ -95,7 +95,7 @@ online_library/
 │   ├── bootstrap.min.css     # Bootstrap CSS (локально)
 │   ├── bootstrap.bundle.min.js  # Bootstrap JS (локально)
 │   └── favicon.svg           # Фавикон
-├── books/
+├── media/
 │   ├── meta_data.json        # Метаданные книг
 │   ├── img/                  # Обложки книг
 │   └── books/                # Тексты книг
