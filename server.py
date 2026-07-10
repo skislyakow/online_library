@@ -82,8 +82,6 @@ def on_reload(data_path):
     with open("index.html", "w", encoding="utf-8") as file:
         file.write(REDIRECT_HTML)
 
-    print(f"Сгенерировано {total_pages} страниц, {len(books)} книг")
-
 
 args = parse_args()
 server = Server()
