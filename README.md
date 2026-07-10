@@ -63,22 +63,12 @@ source .venv/bin/activate    # Linux/macOS
 # Установить зависимости
 pip install -r requirements.txt
 
-# Сгенерировать статические страницы
-python render_website.py
-
 # Запустить сервер с автоперезагрузкой
 python server.py
 ```
 
 Открыть в браузере: [http://127.0.0.1:5500](http://127.0.0.1:5500)
 
-### Простая генерация без сервера
-
-```bash
-python render_website.py
-```
-
-После этого можно открыть `index.html` прямо в браузере.
 
 ## 📁 Структура проекта
 
@@ -101,7 +91,6 @@ online_library/
 │   └── books/                # Тексты книг
 ├── templates/
 │   └── index.html            # Jinja2-шаблон
-├── render_website.py         # Генератор страниц
 ├── server.py                 # Сервер с livereload
 └── screenshot.png            # Скриншот сайта
 ```
