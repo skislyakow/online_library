@@ -83,7 +83,12 @@ def on_reload(data_path):
         file.write(REDIRECT_HTML)
 
 
-args = parse_args()
-server = Server()
-server.watch("templates/index.html", lambda: on_reload(args.data))
-server.serve(root=".", host=args.host, port=args.port)
+def main():
+    args = parse_args()
+    server = Server()
+    server.watch("templates/index.html", lambda: on_reload(args.data))
+    server.serve(root=".", host=args.host, port=args.port)
+
+
+if __name__ == "__main__":
+    main()
