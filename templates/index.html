@@ -43,13 +43,13 @@
                   <div class="card-body">
                     <h5 class="card-title">{{ book.title | e }}</h5>
                     <p class="card-text">{{ book.author | e }}</p>
-                      {% if book.genres %}
-                        <div class="mb-2">
-                          {% for genre in book.genres %}
-                            <span class="badge bg-secondary me-1">{{ genre }}</span>
-                          {% endfor %}
-                        </div>
-                      {% endif %}
+                    {% if book.genres %}
+                      <div class="mb-2">
+                        {% for genre in book.genres %}
+                          <span class="badge bg-secondary me-1">{{ genre }}</span>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
                     <a href="../{{ book.book_url }}" class="btn btn-primary" target="_blank" rel="noopener noreferer">Читать</a>
                   </div>
                 </div>
