@@ -12,52 +12,52 @@
     <nav class="mb-4" aria-label="Page navigation">
       <ul class="pagination justify-content-center">
         {% if prev_page %}
-        <li class="page-item">
-          <a class="page-link" href="index{{ prev_page }}.html">< Назад</a>
-        </li>
+          <li class="page-item">
+            <a class="page-link" href="index{{ prev_page }}.html">< Назад</a>
+          </li>
         {% endif %}
         {% for p in range(1, total_pages + 1) %}
-        <li class="page-item {% if p == current_page %}active{% endif %}">
-          <a class="page-link" href="index{{ p }}.html">{{ p }}</a>
-        </li>
+          <li class="page-item {% if p == current_page %}active{% endif %}">
+            <a class="page-link" href="index{{ p }}.html">{{ p }}</a>
+          </li>
         {% endfor %}
         {% if next_page %}
-        <li class="page-item">
-          <a class="page-link" href="index{{ next_page }}.html">Вперёд ></a>
-        </li>
+          <li class="page-item">
+            <a class="page-link" href="index{{ next_page }}.html">Вперёд ></a>
+          </li>
         {% endif %}
       </ul>
     </nav>
     {% for chunk in books %}
-    <div class="row">
-      {% for book in chunk %}
-      <div class="col-md-6 mb-3">
-        <div class="card">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="../media/{{ book.img_url }}"
-                class="img-fluid rounded-start"
-                alt="Обложка книги {{ book.title | e }}">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">{{ book.title | e }}</h5>
-                <p class="card-text">{{ book.author | e }}</p>
-                {% if book.genres %}
-                <div class="mb-2">
-                  {% for genre in book.genres %}
-                  <span class="badge bg-secondary me-1">{{ genre }}</span>
-                  {% endfor %}
+      <div class="row">
+        {% for book in chunk %}
+          <div class="col-md-6 mb-3">
+            <div class="card">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="../media/{{ book.img_url }}"
+                    class="img-fluid rounded-start"
+                    alt="Обложка книги {{ book.title | e }}">
                 </div>
-                {% endif %}
-                <a href="../{{ book.book_url }}" class="btn btn-primary" target="_blank" rel="noopener noreferer">Читать</a>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ book.title | e }}</h5>
+                    <p class="card-text">{{ book.author | e }}</p>
+                      {% if book.genres %}
+                        <div class="mb-2">
+                          {% for genre in book.genres %}
+                            <span class="badge bg-secondary me-1">{{ genre }}</span>
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    <a href="../{{ book.book_url }}" class="btn btn-primary" target="_blank" rel="noopener noreferer">Читать</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
-    </div>
     {% endfor %}
   </div>
   <script src="../static/bootstrap.bundle.min.js"></script>

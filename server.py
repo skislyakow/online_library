@@ -13,12 +13,12 @@ REDIRECT_HTML = """\
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=pages/index1.html">
-  <title>Онлайн библиотека</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=pages/index1.html">
+    <title>Онлайн библиотека</title>
 </head>
 <body>
-  <p><a href="pages/index1.html">Онлайн библиотека</a></p>
+    <p><a href="pages/index1.html">Онлайн библиотека</a></p>
 </body>
 </html>"""
 
