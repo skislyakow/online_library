@@ -9,18 +9,6 @@ from livereload import Server
 
 BOOKS_PER_PAGE = 20
 BOOKS_PER_ROW = 2
-REDIRECT_HTML = """\
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=pages/index1.html">
-    <title>Онлайн библиотека</title>
-</head>
-<body>
-    <p><a href="pages/index1.html">Онлайн библиотека</a></p>
-</body>
-</html>"""
 
 
 def parse_args():
@@ -80,14 +68,16 @@ def on_reload(data_path):
         ) as file:
             file.write(html)
 
+    redirect_template = env.get_template("redirect.html")
     with open("index.html", "w", encoding="utf-8") as file:
-        file.write(REDIRECT_HTML)
+        file.write(redirect_template.render())
 
 
 def main():
     args = parse_args()
     server = Server()
     server.watch("templates/index.html", lambda: on_reload(args.data))
+    server.watch("templates/redirect.html", lambda: on_reload(args.data))
     server.serve(root=".", host=args.host, port=args.port)
 
 
